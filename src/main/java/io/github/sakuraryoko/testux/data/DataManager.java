@@ -1,5 +1,6 @@
 package io.github.sakuraryoko.testux.data;
 
+import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import io.github.sakuraryoko.testux.Reference;
@@ -80,5 +81,29 @@ public class DataManager
         TestUX.logger.info("DataManager#onPlayerLeave(): player {}", player.getName().getLiteralString());
 
         // Do Something, like un-register a client.
+    }
+
+    public void sendPacket(ServerPlayerEntity player, @Nullable ServerPlayerEntity from, String message)
+    {
+        NbtCompound data = new NbtCompound();
+        if (from != null)
+        {
+            data.putString("from", from.getName().getLiteralString());
+        }
+        else
+        {
+            data.putString("from", "<>");
+
+        }
+        if (message.isEmpty() == false)
+        {
+            data.putString("message", message);
+        }
+        else
+        {
+            data.putString("message", "<>");
+        }
+
+        HANDLER.encodePayload(player, new TestData(Reference.MOD_ID, Reference.MOD_VERSION, TestHandler.PROTOCOL_VERSION, data));
     }
 }
