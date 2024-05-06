@@ -56,9 +56,9 @@ public class DataManager
         HANDLER.registerPlayReceiver(TestPayload.TYPE, HANDLER::receivePlayPayload);
     }
 
-    public void onServerStopping()
+    public void onServerStop()
     {
-        TestUX.logger.info("DataManager#onServerStopping(): execute");
+        TestUX.logger.info("DataManager#onServerStop(): execute");
 
         // Un-Register Receivers
         HANDLER.unregisterPlayReceiver();

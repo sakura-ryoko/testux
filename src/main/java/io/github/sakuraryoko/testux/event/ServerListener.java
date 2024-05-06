@@ -20,11 +20,12 @@ public class ServerListener implements IServerListener
     @Override
     public void onServerStopping(MinecraftServer server)
     {
-        DataManager.getInstance().onServerStopping();
+        DataManager.getInstance().reset(true);
     }
 
     @Override
     public void onServerStopped(MinecraftServer server)
     {
+        DataManager.getInstance().onServerStop();
     }
 }
