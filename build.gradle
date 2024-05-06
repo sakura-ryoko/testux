@@ -11,10 +11,6 @@ repositories {
 		url 'https://masa.dy.fi/maven'
 		mavenLocal()
 	}
-	maven {
-		url 'https://maven.terraformersmc.com/releases/'
-		mavenLocal()
-	}
 	flatDir { dirs 'libs' }
 	// maven { url 'https://maven.quiltmc.org/repository/release/' }
 }
@@ -25,7 +21,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 
-	modImplementation "fi.dy.masa.malilib:malilib-fabric-${project.minecraft_version_out}:${project.malilib_version}"
+	modImplementation "fi.dy.masa.servux:servux-fabric-${project.minecraft_version_out}:${project.servux_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
@@ -33,8 +29,6 @@ dependencies {
 	include(modApi(fabricApi.module("fabric-api-base", project.fabric_api_version)))
 	include(modApi(fabricApi.module("fabric-networking-api-v1", project.fabric_api_version)))
 	include(modApi(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)))
-
-	modCompileOnly "com.terraformersmc:modmenu:${project.mod_menu_version}"
 }
 
 group = project.group + "." + project.mod_id

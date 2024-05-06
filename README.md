@@ -1,4 +1,4 @@
-malitest
+TextUX
 ==============
 A network API testing concept mod.
 Not for public use.
