@@ -7,9 +7,9 @@ import io.github.sakuraryoko.testux.TestUX;
 
 public class TestData
 {
-    private String modName;
-    private String modVersion;
-    private int protocolVersion;
+    private final String modName;
+    private final String modVersion;
+    private final int protocolVersion;
     private NbtCompound nbt = new NbtCompound();
 
     public TestData(String name, String ver, int protocol, @Nullable NbtCompound data)
@@ -17,7 +17,7 @@ public class TestData
         this.modName = name;
         this.modVersion = ver;
         this.protocolVersion = protocol;
-        if (data != null && data.isEmpty() == false)
+        if (data != null && !data.isEmpty())
         {
             this.nbt.copyFrom(data);
         }
@@ -60,7 +60,7 @@ public class TestData
         output.writeString(this.modName);
         output.writeString(this.modVersion);
         output.writeInt(this.protocolVersion);
-        if (this.nbt.isEmpty() == false)
+        if (!this.nbt.isEmpty())
         {
             output.writeBoolean(true);
             output.writeNbt(this.nbt);
@@ -79,7 +79,7 @@ public class TestData
     public void dump()
     {
         TestUX.logger.info("TestData --> modName: {}, modVersion {}, protocolVersion: {}", this.modName, this.modVersion, this.protocolVersion);
-        if (this.nbt.isEmpty() == false)
+        if (!this.nbt.isEmpty())
         {
             TestUX.logger.info("NBT --> {}", this.nbt.toString());
         }

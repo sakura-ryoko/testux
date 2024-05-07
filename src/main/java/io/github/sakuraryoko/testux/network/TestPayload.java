@@ -20,5 +20,5 @@ public record TestPayload(TestData content) implements CustomPayload
     }
 
     @Override
-    public Id<? extends CustomPayload> getId() { return TYPE; }
+    public Id<TestPayload> getId() { return TYPE; }
 }
