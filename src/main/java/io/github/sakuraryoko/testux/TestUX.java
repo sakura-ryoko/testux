@@ -3,6 +3,7 @@ package io.github.sakuraryoko.testux;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.fabricmc.api.ModInitializer;
+import io.github.sakuraryoko.testux.commands.TestUXCommands;
 import io.github.sakuraryoko.testux.data.DataManager;
 import io.github.sakuraryoko.testux.event.PlayerListener;
 import io.github.sakuraryoko.testux.event.ServerListener;
@@ -24,6 +25,6 @@ public class TestUX implements ModInitializer
         PlayerListener playerListener = new PlayerListener();
         PlayerHandler.getInstance().registerPlayerHandler(playerListener);
 
-        //TestUXCommands.register();
+        TestUXCommands.register();
     }
 }
