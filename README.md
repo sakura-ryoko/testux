@@ -12,6 +12,6 @@ Compiling
 
 Testing / Using
 ================
-* Login to the server using a MaLiTest client.
+* Login to the server using a [MaLiTest](https://github.com/sakura-ryoko/malitest) client.
 * Use the /testux [Player] [message] command.
 * Watch the logs to confirm network API is working properly, and that it contains your message.
