@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import io.github.sakuraryoko.testux.Reference;
 import io.github.sakuraryoko.testux.TestUX;
 import fi.dy.masa.servux.network.server.IPluginServerPlayHandler;
 
@@ -18,7 +19,7 @@ public abstract class TestHandler<T extends CustomPayload> implements IPluginSer
         }
     };
     public static TestHandler<TestPayload> getInstance() { return INSTANCE; }
-    public static final Identifier CHANNEL_ID = new Identifier("testux", "test");
+    public static final Identifier CHANNEL_ID = Identifier.of(Reference.MOD_ID, "test");
     public static final int PROTOCOL_VERSION = 1;
 
     private boolean registered = false;
