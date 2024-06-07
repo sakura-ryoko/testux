@@ -1,7 +1,7 @@
-package io.github.sakuraryoko.testux.event;
+package com.github.sakuraryoko.testux.event;
 
 import net.minecraft.server.MinecraftServer;
-import io.github.sakuraryoko.testux.data.DataManager;
+import com.github.sakuraryoko.testux.data.DataManager;
 import fi.dy.masa.servux.interfaces.IServerListener;
 
 public class ServerListener implements IServerListener

@@ -1,4 +1,4 @@
-package io.github.sakuraryoko.testux.event;
+package com.github.sakuraryoko.testux.event;
 
 import java.net.SocketAddress;
 import java.util.UUID;
@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import io.github.sakuraryoko.testux.data.DataManager;
+import com.github.sakuraryoko.testux.data.DataManager;
 import fi.dy.masa.servux.interfaces.IPlayerListener;
 
 public class PlayerListener implements IPlayerListener

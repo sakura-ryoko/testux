@@ -1,4 +1,4 @@
-package io.github.sakuraryoko.testux.commands;
+package com.github.sakuraryoko.testux.commands;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -8,7 +8,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
-import io.github.sakuraryoko.testux.data.DataManager;
+import com.github.sakuraryoko.testux.data.DataManager;
 
 import static net.minecraft.server.command.CommandManager.*;
 

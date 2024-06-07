@@ -1,13 +1,13 @@
-package io.github.sakuraryoko.testux.data;
+package com.github.sakuraryoko.testux.data;
 
 import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
-import io.github.sakuraryoko.testux.Reference;
-import io.github.sakuraryoko.testux.TestUX;
-import io.github.sakuraryoko.testux.network.TestData;
-import io.github.sakuraryoko.testux.network.TestHandler;
-import io.github.sakuraryoko.testux.network.TestPayload;
+import com.github.sakuraryoko.testux.Reference;
+import com.github.sakuraryoko.testux.TestUX;
+import com.github.sakuraryoko.testux.network.TestPayload;
+import com.github.sakuraryoko.testux.network.TestData;
+import com.github.sakuraryoko.testux.network.TestHandler;
 import fi.dy.masa.servux.network.server.IPluginServerPlayHandler;
 import fi.dy.masa.servux.network.server.ServerPlayHandler;
 

@@ -1,12 +1,12 @@
-package io.github.sakuraryoko.testux;
+package com.github.sakuraryoko.testux;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.fabricmc.api.ModInitializer;
-import io.github.sakuraryoko.testux.commands.TestUXCommands;
-import io.github.sakuraryoko.testux.data.DataManager;
-import io.github.sakuraryoko.testux.event.PlayerListener;
-import io.github.sakuraryoko.testux.event.ServerListener;
+import com.github.sakuraryoko.testux.commands.TestUXCommands;
+import com.github.sakuraryoko.testux.data.DataManager;
+import com.github.sakuraryoko.testux.event.PlayerListener;
+import com.github.sakuraryoko.testux.event.ServerListener;
 import fi.dy.masa.servux.event.PlayerHandler;
 import fi.dy.masa.servux.event.ServerHandler;
 

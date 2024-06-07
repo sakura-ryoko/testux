@@ -1,9 +1,9 @@
-package io.github.sakuraryoko.testux.network;
+package com.github.sakuraryoko.testux.network;
 
 import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import io.github.sakuraryoko.testux.TestUX;
+import com.github.sakuraryoko.testux.TestUX;
 
 public class TestData
 {

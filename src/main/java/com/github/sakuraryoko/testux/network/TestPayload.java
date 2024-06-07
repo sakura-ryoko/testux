@@ -1,4 +1,4 @@
-package io.github.sakuraryoko.testux.network;
+package com.github.sakuraryoko.testux.network;
 
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;

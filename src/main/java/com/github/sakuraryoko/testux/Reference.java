@@ -1,4 +1,4 @@
-package io.github.sakuraryoko.testux;
+package com.github.sakuraryoko.testux;
 
 import fi.dy.masa.servux.util.StringUtils;
 
