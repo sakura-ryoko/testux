@@ -1,6 +1,7 @@
 package com.github.sakuraryoko.testux.network;
 
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
@@ -71,6 +72,12 @@ public abstract class TestHandler<T extends CustomPayload> implements IPluginSer
     public void encodePayload(ServerPlayerEntity player, TestData content)
     {
         TestHandler.INSTANCE.sendPlayPayload(player, new TestPayload(content));
+    }
+
+    @Override
+    public void encodeWithSplitter(ServerPlayerEntity player, PacketByteBuf buf)
+    {
+        // NO-OP
     }
 
     @Override

@@ -4,12 +4,13 @@ import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import com.github.sakuraryoko.testux.TestUX;
+import fi.dy.masa.servux.network.server.IServerPayloadData;
 
-public class TestData
+public class TestData implements IServerPayloadData
 {
-    private final String modName;
-    private final String modVersion;
-    private final int protocolVersion;
+    private String modName;
+    private String modVersion;
+    private int protocolVersion;
     private NbtCompound nbt = new NbtCompound();
 
     public TestData(String name, String ver, int protocol, @Nullable NbtCompound data)
@@ -21,11 +22,6 @@ public class TestData
         {
             this.nbt.copyFrom(data);
         }
-    }
-
-    public int getProtocolVersion()
-    {
-        return this.protocolVersion;
     }
 
     public String getModName()
@@ -55,6 +51,38 @@ public class TestData
         this.nbt.copyFrom(input);
     }
 
+    @Override
+    public int getVersion()
+    {
+        return this.protocolVersion;
+    }
+
+    @Override
+    public int getPacketType()
+    {
+        return 0;
+    }
+
+    @Override
+    public int getTotalSize()
+    {
+        int total = 3;
+
+        if (this.nbt.isEmpty() == false)
+        {
+            total += this.nbt.getSizeInBytes();
+        }
+
+        return total;
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        return this.nbt.isEmpty();
+    }
+
+    @Override
     public void toPacket(PacketByteBuf output)
     {
         output.writeString(this.modName);
@@ -87,5 +115,14 @@ public class TestData
         {
             TestUX.logger.info("NBT --> EMPTY");
         }
+    }
+
+    @Override
+    public void clear()
+    {
+        this.modName = "";
+        this.modVersion = "";
+        this.protocolVersion = -1;
+        this.nbt = new NbtCompound();
     }
 }
