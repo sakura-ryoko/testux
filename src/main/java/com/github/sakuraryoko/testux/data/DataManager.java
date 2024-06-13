@@ -8,8 +8,8 @@ import com.github.sakuraryoko.testux.TestUX;
 import com.github.sakuraryoko.testux.network.TestPayload;
 import com.github.sakuraryoko.testux.network.TestData;
 import com.github.sakuraryoko.testux.network.TestHandler;
-import fi.dy.masa.servux.network.server.IPluginServerPlayHandler;
-import fi.dy.masa.servux.network.server.ServerPlayHandler;
+import fi.dy.masa.servux.network.IPluginServerPlayHandler;
+import fi.dy.masa.servux.network.ServerPlayHandler;
 
 public class DataManager
 {

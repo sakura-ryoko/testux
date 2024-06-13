@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import com.github.sakuraryoko.testux.TestUX;
-import fi.dy.masa.servux.network.server.IServerPayloadData;
+import fi.dy.masa.servux.network.IServerPayloadData;
 
 public class TestData implements IServerPayloadData
 {

@@ -3,11 +3,12 @@ package com.github.sakuraryoko.testux.network;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import com.github.sakuraryoko.testux.Reference;
 import com.github.sakuraryoko.testux.TestUX;
-import fi.dy.masa.servux.network.server.IPluginServerPlayHandler;
+import fi.dy.masa.servux.network.IPluginServerPlayHandler;
 
 public abstract class TestHandler<T extends CustomPayload> implements IPluginServerPlayHandler<T>
 {
@@ -75,7 +76,7 @@ public abstract class TestHandler<T extends CustomPayload> implements IPluginSer
     }
 
     @Override
-    public void encodeWithSplitter(ServerPlayerEntity player, PacketByteBuf buf)
+    public void encodeWithSplitter(ServerPlayerEntity player, PacketByteBuf buf, ServerPlayNetworkHandler networkHandler)
     {
         // NO-OP
     }
