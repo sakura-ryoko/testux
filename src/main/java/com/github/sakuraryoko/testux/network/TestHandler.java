@@ -12,15 +12,15 @@ import fi.dy.masa.servux.network.IPluginServerPlayHandler;
 
 public abstract class TestHandler<T extends CustomPayload> implements IPluginServerPlayHandler<T>
 {
-    private static final TestHandler<TestPayload> INSTANCE = new TestHandler<>()
+    private static final TestHandler<TestPacket.Payload> INSTANCE = new TestHandler<>()
     {
         @Override
-        public void receive(TestPayload payload, ServerPlayNetworking.Context context)
+        public void receive(TestPacket.Payload payload, ServerPlayNetworking.Context context)
         {
             TestHandler.INSTANCE.receivePlayPayload(payload, context);
         }
     };
-    public static TestHandler<TestPayload> getInstance() { return INSTANCE; }
+    public static TestHandler<TestPacket.Payload> getInstance() { return INSTANCE; }
     public static final Identifier CHANNEL_ID = Identifier.of(Reference.MOD_ID, "test");
     public static final int PROTOCOL_VERSION = 1;
 
@@ -63,16 +63,16 @@ public abstract class TestHandler<T extends CustomPayload> implements IPluginSer
         }
     }
 
-    public void decodePayload(ServerPlayerEntity player, TestData content)
+    public void decodePayload(ServerPlayerEntity player, TestPacket content)
     {
         TestUX.logger.info("TestHandler#decodePayload: from {}", player.getName().getLiteralString());
 
         content.dump();
     }
 
-    public void encodePayload(ServerPlayerEntity player, TestData content)
+    public void encodePayload(ServerPlayerEntity player, TestPacket content)
     {
-        TestHandler.INSTANCE.sendPlayPayload(player, new TestPayload(content));
+        TestHandler.INSTANCE.sendPlayPayload(player, new TestPacket.Payload(content));
     }
 
     @Override
@@ -84,6 +84,6 @@ public abstract class TestHandler<T extends CustomPayload> implements IPluginSer
     @Override
     public void receivePlayPayload(T payload, ServerPlayNetworking.Context context)
     {
-        TestHandler.INSTANCE.decodePayload(context.player(), ((TestPayload) payload).content());
+        TestHandler.INSTANCE.decodePayload(context.player(), ((TestPacket.Payload) payload).content());
     }
 }

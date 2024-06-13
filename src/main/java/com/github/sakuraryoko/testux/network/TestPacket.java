@@ -3,17 +3,19 @@ package com.github.sakuraryoko.testux.network;
 import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.packet.CustomPayload;
 import com.github.sakuraryoko.testux.TestUX;
 import fi.dy.masa.servux.network.IServerPayloadData;
 
-public class TestData implements IServerPayloadData
+public class TestPacket implements IServerPayloadData
 {
     private String modName;
     private String modVersion;
     private int protocolVersion;
     private NbtCompound nbt = new NbtCompound();
 
-    public TestData(String name, String ver, int protocol, @Nullable NbtCompound data)
+    public TestPacket(String name, String ver, int protocol, @Nullable NbtCompound data)
     {
         this.modName = name;
         this.modVersion = ver;
@@ -99,14 +101,14 @@ public class TestData implements IServerPayloadData
         }
     }
 
-    public static TestData fromPacket(PacketByteBuf input)
+    public static TestPacket fromPacket(PacketByteBuf input)
     {
-        return new TestData(input.readString(), input.readString(), input.readInt(), input.readBoolean() ? input.readNbt() : null);
+        return new TestPacket(input.readString(), input.readString(), input.readInt(), input.readBoolean() ? input.readNbt() : null);
     }
 
     public void dump()
     {
-        TestUX.logger.info("TestData --> modName: {}, modVersion {}, protocolVersion: {}", this.modName, this.modVersion, this.protocolVersion);
+        TestUX.logger.info("TestPacket --> modName: {}, modVersion {}, protocolVersion: {}", this.modName, this.modVersion, this.protocolVersion);
         if (!this.nbt.isEmpty())
         {
             TestUX.logger.info("NBT --> {}", this.nbt.toString());
@@ -124,5 +126,24 @@ public class TestData implements IServerPayloadData
         this.modVersion = "";
         this.protocolVersion = -1;
         this.nbt = new NbtCompound();
+    }
+
+    public record Payload(TestPacket content) implements CustomPayload
+    {
+        public static final Id<Payload> ID = new Id<>(TestHandler.CHANNEL_ID);
+        public static final PacketCodec<PacketByteBuf, Payload> CODEC = CustomPayload.codecOf(Payload::write, Payload::new);
+
+        public Payload(PacketByteBuf input)
+        {
+            this(TestPacket.fromPacket(input));
+        }
+
+        private void write(PacketByteBuf output)
+        {
+            content.toPacket(output);
+        }
+
+        @Override
+        public Id<Payload> getId() { return ID; }
     }
 }

@@ -7,12 +7,7 @@ sourceCompatibility = JavaVersion.VERSION_21
 targetCompatibility = JavaVersion.VERSION_21
 
 repositories {
-	maven {
-		url 'https://masa.dy.fi/maven'
-		//mavenLocal()
-	}
-	//flatDir { dirs 'libs' }
-	// maven { url 'https://maven.quiltmc.org/repository/release/' }
+	maven {	url 'https://masa.dy.fi/maven' }
 	maven { url 'https://jitpack.io' }
 }
 
@@ -26,10 +21,11 @@ dependencies {
 	modImplementation "com.github.sakura-ryoko:servux:${project.servux_id}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	//modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 	include(modApi(fabricApi.module("fabric-api-base", project.fabric_api_version)))
 	include(modApi(fabricApi.module("fabric-networking-api-v1", project.fabric_api_version)))
+	include(modApi(fabricApi.module("fabric-command-api-v2", project.fabric_api_version)))
 	include(modApi(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)))
 }
 

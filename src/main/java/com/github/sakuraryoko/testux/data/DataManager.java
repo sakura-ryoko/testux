@@ -5,8 +5,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import com.github.sakuraryoko.testux.Reference;
 import com.github.sakuraryoko.testux.TestUX;
-import com.github.sakuraryoko.testux.network.TestPayload;
-import com.github.sakuraryoko.testux.network.TestData;
+import com.github.sakuraryoko.testux.network.TestPacket;
 import com.github.sakuraryoko.testux.network.TestHandler;
 import fi.dy.masa.servux.network.IPluginServerPlayHandler;
 import fi.dy.masa.servux.network.ServerPlayHandler;
@@ -16,7 +15,7 @@ public class DataManager
     private static final DataManager INSTANCE = new DataManager();
     public static DataManager getInstance() { return INSTANCE; }
 
-    private final static TestHandler<TestPayload> HANDLER = TestHandler.getInstance();
+    private final static TestHandler<TestPacket.Payload> HANDLER = TestHandler.getInstance();
 
     private DataManager()
     {
@@ -45,7 +44,7 @@ public class DataManager
         ServerPlayHandler.getInstance().registerServerPlayHandler(HANDLER);
 
         // Register Payload Channels
-        HANDLER.registerPlayPayload(TestPayload.TYPE, TestPayload.CODEC, IPluginServerPlayHandler.BOTH_SERVER);
+        HANDLER.registerPlayPayload(TestPacket.Payload.ID, TestPacket.Payload.CODEC, IPluginServerPlayHandler.BOTH_SERVER);
   
     }
 
@@ -54,7 +53,7 @@ public class DataManager
         TestUX.logger.info("DataManager#onServerStart(): execute");
 
         // Register Receivers
-        HANDLER.registerPlayReceiver(TestPayload.TYPE, HANDLER::receivePlayPayload);
+        HANDLER.registerPlayReceiver(TestPacket.Payload.ID, HANDLER::receivePlayPayload);
     }
 
     public void onServerStop()
@@ -73,7 +72,7 @@ public class DataManager
         NbtCompound data = new NbtCompound();
         data.putString("test", "hello");
 
-        HANDLER.encodePayload(player, new TestData(Reference.MOD_ID, Reference.MOD_VERSION, TestHandler.PROTOCOL_VERSION, data));
+        HANDLER.encodePayload(player, new TestPacket(Reference.MOD_ID, Reference.MOD_VERSION, TestHandler.PROTOCOL_VERSION, data));
     }
 
     public void onPlayerLeave(ServerPlayerEntity player)
@@ -104,6 +103,6 @@ public class DataManager
             data.putString("message", "<>");
         }
 
-        HANDLER.encodePayload(player, new TestData(Reference.MOD_ID, Reference.MOD_VERSION, TestHandler.PROTOCOL_VERSION, data));
+        HANDLER.encodePayload(player, new TestPacket(Reference.MOD_ID, Reference.MOD_VERSION, TestHandler.PROTOCOL_VERSION, data));
     }
 }
