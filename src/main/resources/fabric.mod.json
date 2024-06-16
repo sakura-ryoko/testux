@@ -26,7 +26,7 @@
 	],
 
 	"depends": {
-		"minecraft": ">=1.20.6",
-		"servux": ">=0.2.0"
+		"minecraft": ">=1.21",
+		"servux": ">=0.2.0.999-sakura.1"
 	}
 }
