@@ -1,7 +1,7 @@
 TestUX
 ==============
-A network API testing concept mod.
-Not for public use.
+A network API testing concept mod, based from the [Servux](https://modrinth.com/mod/servux) interface.
+Not untended for public use, but for Mod Development purposes.
 
 Compiling
 =========
