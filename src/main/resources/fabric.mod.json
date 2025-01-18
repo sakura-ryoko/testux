@@ -26,7 +26,7 @@
 	],
 
 	"depends": {
-		"minecraft": ">=1.21",
-		"servux": ">=0.3.5"
+		"minecraft": ">=1.21 <=1.21.1",
+		"servux": ">=0.3.12"
 	}
 }

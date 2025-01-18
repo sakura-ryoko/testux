@@ -1,14 +1,11 @@
 plugins {
 	id 'fabric-loom' version '1.7-SNAPSHOT'
-	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
-
 repositories {
-	//maven {	url 'https://masa.dy.fi/maven' }
-	maven { url 'https://jitpack.io' }
+	maven { url = 'https://masa.dy.fi/maven' }
+	maven { url = 'https://maven.fallenbreath.me/releases' }
+	maven { url = 'https://jitpack.io' }
 }
 
 dependencies {
@@ -18,7 +15,7 @@ dependencies {
 	implementation "com.google.code.findbugs:jsr305:3.0.2"
 
 	//modImplementation "fi.dy.masa.servux:servux-fabric-${project.minecraft_version_out}:${project.servux_version}"
-	modImplementation "com.github.sakura-ryoko:servux:${project.servux_id}"
+	modImplementation "com.github.sakura-ryoko:servux:${project.servux_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
@@ -27,14 +24,31 @@ dependencies {
 	//modImplementation "fabric-networking-api-v1:${project.fabric_api_version}"
 	//modImplementation "fabric-command-api-v2:${project.fabric_api_version}"
 	//modImplementation "fabric-resource-loader-v0:${project.fabric_api_version}"
+
+//	modRuntimeOnly 'me.fallenbreath:mixin-auditor:0.1.0'
 }
 
-group = project.group + "." + project.mod_id
-archivesBaseName = project.mod_file_name + '-' + project.minecraft_version_out
-version = project.mod_version
+base {
+	group = project.group + "." + project.mod_id
+	archivesName = project.mod_file_name + '-' + project.minecraft_version_out
+	version = project.mod_version
 
-if (version.endsWith('-dev')) {
-	version += "." + new Date().format('yyyyMMdd.HHmmss')
+	if (version.endsWith('-dev')) {
+		version += "." + new Date().format('yyyyMMdd.HHmmss')
+	}
+}
+
+loom {
+//	def commonVmArgs = ['-Dmixin.debug.export=true', '-Dmixin.debug.countInjections=true']
+//	// [FEATURE] MIXIN_AUDITOR
+//	runs {
+//		def auditVmArgs = [*commonVmArgs, '-DmixinAuditor.audit=true']
+//		serverMixinAudit {
+//			server()
+//			vmArgs auditVmArgs
+//			ideConfigGenerated false
+//		}
+//	}
 }
 
 processResources {
@@ -77,25 +91,6 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
-	}
-}
-
-tasks.publish.dependsOn build
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			artifactId project.archivesBaseName
-
-			// add all the jars that should be included when publishing to maven
-			//artifact(jar)             { builtBy remapJar }
-			from components.java
-		}
-	}
-
-	repositories {
-		maven {
-			url "$projectDir/../../CommonMaven"
-		}
+		rename { "${it}_${base.archivesName}"}
 	}
 }

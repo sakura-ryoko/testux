@@ -7,6 +7,7 @@ import com.github.sakuraryoko.testux.commands.TestUXCommands;
 import com.github.sakuraryoko.testux.data.DataManager;
 import com.github.sakuraryoko.testux.event.PlayerListener;
 import com.github.sakuraryoko.testux.event.ServerListener;
+
 import fi.dy.masa.servux.event.PlayerHandler;
 import fi.dy.masa.servux.event.ServerHandler;
 
