@@ -15,3 +15,5 @@ Testing / Using
 * Login to the server using a [MaLiTest](https://github.com/sakura-ryoko/malitest) client.
 * Use the /testux [Player] [message] command.
 * Watch the logs to confirm network API is working properly, and that it contains your message.
+
+[![Join Sakura's RyokoCraft Discord](https://sakuraryoko.com/files/1398873/discord-300px.png)](https://discord.gg/njVWs6DF)
